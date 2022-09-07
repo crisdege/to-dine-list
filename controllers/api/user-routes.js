@@ -21,8 +21,8 @@ router.post('/', async (req, res) => {
     }
 });
 
-// user to login
-router.post('/', async (req, res) => {
+// user to login // is route correct for login "page" to be on home page?
+router.post('/login', async (req, res) => {
     try {
         const dbUserData = await User.findOne({
             where: {
