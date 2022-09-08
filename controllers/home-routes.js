@@ -4,7 +4,7 @@ const { List, Restaurant } = require('../models'); // need models, will probably
 const withAuth = require('../utils/auth');
 
 // GET restaurants list
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
         const dbListData = await List.findAll({
             include: [
