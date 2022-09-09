@@ -15,9 +15,12 @@ Restaurant.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    cuisine: {
-      type: DataTypes.STRING,
-      allowNull: false,
+    cuisine_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "cuisine",
+        key: "id",
+      },
     },
     location: {
       type: DataTypes.STRING,
