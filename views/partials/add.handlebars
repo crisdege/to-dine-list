@@ -1,0 +1,52 @@
+<section class="sidebar">
+    <h2>More Options</h2>
+    <button class="sidebar-btn" id="add-restaurant">Discard Changes</button>
+    <button class="sidebar-btn" id="add-restaurant">Change My Password</button>
+    <button class="sidebar-btn" id="add-restaurant">Log Out</button>
+    <script src="/js/update-user.js"></script>
+    {{!-- need to add script to make Discard Changes button send back to home page --}}
+    {{!-- no need to add script for logout.js here, since it's conditionally added on main.handlebars --}}
+</section>
+<main>
+    <div class="main-form">
+        <h2>
+            Add a Restaurant
+        </h2>
+        <form id="add-form">
+            <div>
+                <label for="restaurant-name">Restaurant Name</label>
+                <input type="text" id="restaurant-name" />
+            </div>
+            <div>
+                {{!-- will need to update these list options --}}
+                <label for="cuisine">Cuisine Type</label>
+                <select name="cuisine" id="cuisine">
+                    <option value="Option 1">Option 1</option>
+                    <option value="Option 2">Option 2</option>
+                    <option value="Option 3">Option 3</option>
+                    <option value="Option 4">Option 4</option>
+                </select>
+            </div>
+            <div>
+                <label for="location">Location</label>
+                <input type="text" id="location" />
+            </div>
+            <div>
+                <label for="cuisine">Rating</label>
+                <select name="cuisine" id="cuisine">
+                    <option value="0" selected="selected">No Rating</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                </select>
+            </div>
+            <div>
+                <label for="notes">Notes</label>
+                <textarea id="notes"></textarea>
+            </div>
+            <div>
+                <button type="submit" class="main-form-btn" id="add-btn">Add Restaurant</button>
+            </div>
+        </form>
+    </div>
+</main>
