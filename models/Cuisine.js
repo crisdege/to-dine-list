@@ -11,6 +11,12 @@ Cuisine.init(
       primaryKey: true,
       autoIncrement: true,
     },
+    name: {
+      states: {
+        type: sequelize.ENUM,
+        values: ["asian", "american", "italian", "mexican", "indian", " other"],
+      },
+    },
   },
   {
     sequelize,
