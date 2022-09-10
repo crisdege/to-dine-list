@@ -10,15 +10,17 @@
 <main>
     <div class="main-form">
         <h2>
-            Add a Restaurant
+            Edit a Restaurant
         </h2>
         <form id="add-form">
             <div>
                 <label for="restaurant-name">Restaurant Name</label>
+                {{!-- need to add code to autofill form with existing data --}}
                 <input type="text" id="restaurant-name" />
             </div>
             <div>
                 {{!-- will need to update these list options --}}
+                {{!-- need to add selected="selected" to current option --}}
                 <label for="cuisine">Cuisine Type</label>
                 <select name="cuisine" id="cuisine">
                     <option value="Option 1">Option 1</option>
@@ -29,9 +31,11 @@
             </div>
             <div>
                 <label for="location">Location</label>
+                {{!-- need to add code to autofill form with existing data --}}
                 <input type="text" id="location" />
             </div>
             <div>
+                {{!-- need to change selected="selected" to current option --}}
                 <label for="cuisine">Rating</label>
                 <select name="cuisine" id="cuisine">
                     <option value="0" selected="selected">No Rating</option>
@@ -42,10 +46,11 @@
             </div>
             <div>
                 <label for="notes">Notes</label>
+                {{!-- need to add code to autofill form with existing data --}}
                 <textarea id="notes"></textarea>
             </div>
             <div>
-                <button type="submit" class="main-form-btn" id="add-btn">Add Restaurant</button>
+                <button type="submit" class="main-form-btn" id="edit-btn">Edit Restaurant</button>
             </div>
         </form>
     </div>

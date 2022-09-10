@@ -58,7 +58,7 @@
         {{!-- will need to add CSS to make div.restaurant change on hover so it's clearly a link --}}
             {{> restaurant-info restaurant}}
             <h3>{{restaurant.name}}</h3>
-            <img src="/public/img/{{restaurant.imgName}}.jpg" class="restaurant-card-img">
+            <img src="/img/{{restaurant.imgName}}.jpg" class="restaurant-card-img">
             {{!-- will need to add imgName key to each imported restaurant object with filename of associated image --}}
             {{#if ratingCheck}}
             {{!-- add code for rating stars based on rating here --}}
