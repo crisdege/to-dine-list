@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Dine List</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1 class="title">
+            <a href="/">To-Dine List</a>
+        </h1>
+        <span style="subtitle">What's On The Menu Tonight?</span>
+    </header>
+
+    <div class="wrapper">
+        {{{content}}}
+    </div>
+
+    <footer>
+        <span>&copy; 2022, Group 3</span>
+    </footer>
+
+    {{#if loggedIn}}
+    <script src="/js/logout.js"></script>
+    {{else}}
+    <script src="/js/login.js"></script>
+    {{/if}}
+
+</body>
+
+</html>
