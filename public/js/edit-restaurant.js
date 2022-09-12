@@ -31,4 +31,4 @@ async function editFormHandler(event) {
     }
   }
   
-  document.querySelector('#').addEventListener('submit', editFormHandler); //need to add btn id
+  document.querySelector('#edit-btn').addEventListener('submit', editFormHandler);
