@@ -1,25 +1,29 @@
 const router = require('express').Router();
-const { List, Restaurant } = require('../models'); // need models, will probably update later
+const { Restaurant, Cuisine } = require('../models');
 // middleware import
 const withAuth = require('../utils/auth');
 
-// GET restaurants list
+// GET restaurants list for homepage
 router.get('/', withAuth, async (req, res) => {
     try {
-        const dbListData = await List.findAll({
+        const dbRestaurantData = await Restaurant.findAll({
             include: [
                 {
-                    model: List,
-                    attributes: ['name', 'cuisine', 'rating'], // will need to update depending on model attributes
+                    model: Restaurant,
+                    attributes: ['name', 'cuisine_id', 'rating'],
                 },
+                {
+                    model: Cuisine,
+                    attributes: ['id', 'name']
+                }
             ],
         });
 
-        const list = dbListData.map((list) =>
-            list.get({ plain: true })
+        const restaurant = dbRestaurantData.map((restaurant) =>
+            restaurant.get({ plain: true })
         );
         res.render('homepage', {
-            list,
+            restaurant,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {
