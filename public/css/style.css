@@ -163,3 +163,11 @@
     align-items: center;
   }
   
+  /* UTILITY */
+  .red-text {
+    color: #7b241c;
+  }
+
+  ion-icon {
+    color: #7b241c;
+  }
