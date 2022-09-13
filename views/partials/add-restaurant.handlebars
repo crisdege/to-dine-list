@@ -12,7 +12,7 @@
         <form id="add-form">
             <div>
                 <label for="restaurant-name">Restaurant Name</label>
-                <input type="text" id="restaurant-name" />
+                <input name="restaurant-name" type="text" id="restaurant-name" />
             </div>
             <div>
                 <label for="cuisine">Cuisine Type</label>
@@ -28,11 +28,11 @@
             </div>
             <div>
                 <label for="location">Location</label>
-                <input type="text" id="location" />
+                <input name="location" type="text" id="location" />
             </div>
             <div>
-                <label for="cuisine">Rating</label>
-                <select name="cuisine" id="cuisine">
+                <label for="rating">Rating</label>
+                <select name="rating" id="rating">
                     <option value="0" selected="selected">No Rating</option>
                     <option value="1">1 Star</option>
                     <option value="2">2 Stars</option>
@@ -41,7 +41,7 @@
             </div>
             <div>
                 <label for="notes">Notes</label>
-                <textarea id="notes"></textarea>
+                <textarea name="notes" id="notes"></textarea>
             </div>
             <div>
                 <button type="submit" class="main-form-btn" id="add-btn">Add Restaurant</button>

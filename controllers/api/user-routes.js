@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const { User } = require('../../models');
+// middleware import
+const withAuth = require('../utils/auth');
 
 // CREATE new user
 router.post('/', async (req, res) => {
@@ -10,12 +12,32 @@ router.post('/', async (req, res) => {
         });
 
         req.session.save(() => {
+            req.session.user_id = dbUserData.id;
+            req.session.username = dbUserData.username;
             req.session.loggedIn = true;
 
             res.status(200).json(dbUserData);
         });
     } catch (err) {
         console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+// update user password
+router.put('update/:id', withAuth, async (req, res) => {
+    // req.body should look like this:
+    // {"id": "ID#", "password": "PASSWORD"}
+    try {
+        const result = await User.update(
+            { password: req.body.password },
+            { where: { id: req.params.id}}
+        )
+        .then(() => res.render('homepage', {
+            restaurants,
+            loggedIn: req.session.loggedIn,
+        }));
+    } catch (err) {
         res.status(500).json(err);
     }
 });
@@ -62,7 +84,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
-            res.status(204).end();
+            document.location.replace('/');
         });
     } else {
         res.status(404).end();

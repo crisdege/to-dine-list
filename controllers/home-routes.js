@@ -19,17 +19,42 @@ router.get('/', withAuth, async (req, res) => {
             ],
         });
 
-        const restaurant = dbRestaurantData.map((restaurant) =>
-            restaurant.get({ plain: true })
+        const restaurantData = dbRestaurantData.map((restaurant) =>
+            restaurantData.get({ plain: true })
         );
+
+        // add boolean values for displaying ratings
+        let restaurants = restaurantData.map((restaurant) => {
+            restaurant.rating1 = false;
+            restaurant.rating2 = false;
+            restaurant.rating3 = false;
+            
+            if (restaurant.rating === 0) {
+                restaurant.ratingCheck = false;
+            } else {
+                restaurant.ratingCheck = true;
+
+                if (restaurant.rating === 1) {
+                    restaurant.rating1 = true;
+                } else if (restaurant.rating === 2) {
+                    restaurant.rating2 = true;
+                } else {
+                    restaurant.rating3 = true;
+                };
+            };
+        })
+
+        // add imgName
+        // this code needs to be added based on Cristina's images
+
         res.render('homepage', {
-            restaurant,
+            restaurants,
             loggedIn: req.session.loggedIn,
         });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
-    }
+    };
 });
 
 // GET one restaurant

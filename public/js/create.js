@@ -5,7 +5,7 @@ async function newFormHandler(event) {
     const cuisine_id = document.querySelector('select[name="cuisine"]').value;
     const location = document.querySelector('input[name="location"]').value;
     const rating = document.querySelector('select[name="rating"]').value;
-    const note = document.querySelector('textarea[name="note"]').value;
+    const notes = document.querySelector('textarea[name="notes"]').value;
 
     const response = await fetch(`/api/restaurants`, {
       method: 'POST',
@@ -14,7 +14,7 @@ async function newFormHandler(event) {
         cuisine_id,
         location,
         rating,
-        note,
+        notes,
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -22,10 +22,10 @@ async function newFormHandler(event) {
     });
   
     if (response.ok) {
-      document.location.replace('/restaurants');
+      document.location.replace('/');
     } else {
       alert(response.statusText);
     }
   }
   
-  document.querySelector('#').addEventListener('submit', newFormHandler); //need to add btn id
+  document.querySelector('#add-btn').addEventListener('submit', newFormHandler);
