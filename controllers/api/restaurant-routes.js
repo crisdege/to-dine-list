@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Restaurant, Cuisine, Restaurant } = require('../../models');
+const { Restaurant, Cuisine, User } = require('../../models');
 // middleware import
 const withAuth = require('../../utils/auth');
 
