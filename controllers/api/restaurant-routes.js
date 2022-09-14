@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { Restaurant, Cuisine } = require('../../models');
+const { Restaurant, Cuisine, Restaurant } = require('../../models');
 // middleware import
 const withAuth = require('../../utils/auth');
 
 // GET restaurants
+// not currently in use
 router.get('/', (req, res) => {
     Restaurant.findAll({
         include: [
@@ -125,8 +126,41 @@ router.get('/edit/:id', withAuth, async (req, res) => {
                 };
 
                 // add boolean values for displaying cuisine
+                if (restaurant.cuisine_id === 1) {
+                    restaurant.cuisine1 = true;
+                } else {
+                    restaurant.cuisine1 = false;
+                };
 
-                // ret
+                if (restaurant.cuisine_id === 2) {
+                    restaurant.cuisine2 = true;
+                } else {
+                    restaurant.cuisine2 = false;
+                };
+
+                if (restaurant.cuisine_id === 3) {
+                    restaurant.cuisine3 = true;
+                } else {
+                    restaurant.cuisine3 = false;
+                };
+
+                if (restaurant.cuisine_id === 4) {
+                    restaurant.cuisine4 = true;
+                } else {
+                    restaurant.cuisine4 = false;
+                };
+
+                if (restaurant.cuisine_id === 5) {
+                    restaurant.cuisine5 = true;
+                } else {
+                    restaurant.cuisine5 = false;
+                };
+
+                if (restaurant.cuisine_id === 6) {
+                    restaurant.cuisine6 = true;
+                } else {
+                    restaurant.cuisine6 = false;
+                };
 
                 res.render('edit-restaurant', { restaurant, loggedIn: req.session.loggedIn });
             };
