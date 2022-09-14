@@ -3,21 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+     <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>To-Dine List</title>
-    <link rel="stylesheet" href="/css/style.css">
+    
+    
+
 </head>
 
 <body>
 
-    <header>
-        <h1 class="title">
+    <header class="card-panel red lighten-3">
+        <h1 >
             <a href="/">To-Dine List</a>
         </h1>
         <span style="subtitle">What's On The Menu Tonight?</span>
     </header>
 
-    <div class="wrapper">
+    <div class="row">
         {{{ body }}}
     </div>
 
@@ -31,6 +40,8 @@
     <script src="/js/login.js"></script>
     {{/if}}
 
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
 </body>
 
 </html>

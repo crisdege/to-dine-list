@@ -1,4 +1,4 @@
-:root {
+/* :root {
     --primary: #e35656;
     --secondary: #86938f;
     --tertiary: #e35656;
@@ -106,7 +106,7 @@
   }
   
   /* CARDS */
-  .card {
+  /* .card {
     margin: 20px;
     flex: 0 1 300px;
     border: 7px double var(--dark);
@@ -156,18 +156,18 @@
   }
   
   /* LAYOUT */
-  .container {
+  /* .container {
     display: flex;
     flex-flow: column wrap;
     align-content: flex-start;
     align-items: center;
   }
-  
+   */
   /* UTILITY */
-  .red-text {
+  /*.red-text {
     color: #7b241c;
   }
 
   ion-icon {
     color: #7b241c;
-  }
+  } */ 

@@ -8,7 +8,7 @@
     .rating3 BOOLEAN
         only one rating# value should be true; if all false, ratingCheck should also be false
  --}}
-<section class="sidebar">
+<div class= "col s3 teal lighten-3">
     {{#if loggedIn}}
     <p>Click on a restaurant to see its details and add/change its rating.</p>
     <h2>More Options</h2>
@@ -16,7 +16,7 @@
     {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
     <button class="sidebar-btn" id="logout">Log Out</button>
     {{else}}
-    <div>
+    <div >
         <h2>Sign Up</h2>
         <form class="signup-form">
             <div>
@@ -49,7 +49,7 @@
         </form>
     </div>
     {{/if}}
-</section>
+</div>
 <main>
     {{#if loggedIn}}
     <h2>
@@ -76,6 +76,8 @@
         {{/each}}
     </div>
     {{else}}
+    <div class="col s9 amber lighten-5">
+
     <p>What was the name of that restaurant your friend has been telling you to try? And did
         you try the new sushi place a couple weeks ago or the one across town?</p>
 
@@ -86,6 +88,7 @@
         Once you’ve visited a restaurant, give it a rating so you know to go back.</p>
 
     <p class="red-text">Create an account or log in to get started.</p>
+    </div>
     {{/if}}
 </main>
 {{!-- no need to add script for logout.js here, since it's conditionally added on main.handlebars --}}
