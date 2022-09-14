@@ -14,7 +14,7 @@
 <section class="sidebar">
     <h2>More Options</h2>
     <button class="sidebar-btn" id="edit-restaurant">Edit This Restaurant</button>
-    <button class="sidebar-btn" id="update-user">Change My Password</button>
+    {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
     <button class="sidebar-btn" id="logout">Log Out</button>
 </section>
 <main>
@@ -25,7 +25,7 @@
     <div class="restaurant-view">
         <p><a href="/">&lt;&lt;Back to My To-Dine List</a></p>
         <img src="/img/{{restaurant.imgName}}.jpg" class="restaurant-view-img">
-        <p>Cuisine: <span class="red-text">{{restaurant.cuisine}}</span></p>
+        <p>Cuisine: <span class="red-text">{{restaurant.cuisine.name}}</span></p>
         <p>Location: <span class="red-text">{{restaurant.location}}</span></p>
         <p>
             Rating: {{#unless ratingCheck}}<span class="red-text">None</span>{{/unless}}
@@ -43,5 +43,4 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {{!-- will need to add script to to make Edit Restaurant button link to edit page --}}
-<script src="/js/update-user.js"></script>
-{{!-- need to create script for update-user.js --}}
+{{!-- <script src="/js/update-user.js"></script> --}}

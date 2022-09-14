@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
                 attributes: ['id', 'name', 'cuisine_id', 'location', 'rating', 'notes'],
                 include: {
                     model: Cuisine,
-                    attributes: ['id','name']
+                    attributes: ['id', 'name']
                 }
             },
             {
@@ -28,16 +28,65 @@ router.get('/', (req, res) => {
         });
 });
 
-// GET one restaurant by id
-router.get('/:id', (req, res) => {
-    Restaurant.findOne({
-        where: {
-            id: req.params.id
-        },
+// GET one restaurant for view restauant page
+router.get('/:id', withAuth, async (req, res) => {
+    try {
+        const dbRestaurantData = await Restaurant.findOne({
+            where: { id: req.params.id },
+            include: [
+                {
+                    model: Restaurant,
+                    attributes: ['name', 'cuisine_id', 'rating', 'location', 'notes']
+                },
+                {
+                    model: Cuisine,
+                    attributes: ['id', 'name']
+                }
+            ]
+        });
+
+        const restaurant = dbRestaurantData.get({ plain: true });
+
+        // add boolean values for displaying ratings
+        restaurant.rating1 = false;
+        restaurant.rating2 = false;
+        restaurant.rating3 = false;
+
+        if (restaurant.rating === 0) {
+            restaurant.ratingCheck = false;
+        } else {
+            restaurant.ratingCheck = true;
+
+            if (restaurant.rating === 1) {
+                restaurant.rating1 = true;
+            } else if (restaurant.rating === 2) {
+                restaurant.rating2 = true;
+            } else {
+                restaurant.rating3 = true;
+            };
+        };
+
+        // add code for selecting correct image
+
+        res.render('view-restaurant', { restaurant, loggedIn: req.session.loggedIn });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+// GET one restaurant for edit restaurant page
+router.get('/edit/:id', withAuth, async (req, res) => {
+    const dbRestaurantData = await Restaurant.findOne({
+        where: { id: req.params.id },
         include: [
             {
+                model: Restaurant,
+                attributes: ['name', 'cuisine_id', 'rating', 'location', 'notes']
+            },
+            {
                 model: Cuisine,
-                attributes: ['id', 'name'],
+                attributes: ['id', 'name', 'cuisine_image'],
                 include: {
                     model: User,
                     attributes: ['username']
@@ -53,8 +102,34 @@ router.get('/:id', (req, res) => {
             if (!dbRestaurantData) {
                 res.status(404).json({ message: 'No restaurant found with this id' });
                 return;
-            }
-            res.json(dbRestaurantData);
+            } else {
+                let restaurant = dbRestaurantData;
+
+                // add boolean values for displaying ratings
+                restaurant.rating1 = false;
+                restaurant.rating2 = false;
+                restaurant.rating3 = false;
+
+                if (restaurant.rating === 0) {
+                    restaurant.ratingCheck = false;
+                } else {
+                    restaurant.ratingCheck = true;
+
+                    if (restaurant.rating === 1) {
+                        restaurant.rating1 = true;
+                    } else if (restaurant.rating === 2) {
+                        restaurant.rating2 = true;
+                    } else {
+                        restaurant.rating3 = true;
+                    };
+                };
+
+                // add boolean values for displaying cuisine
+
+                // ret
+
+                res.render('edit-restaurant', { restaurant, loggedIn: req.session.loggedIn });
+            };
         })
         .catch(err => {
             console.log(err);

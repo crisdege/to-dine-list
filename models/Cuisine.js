@@ -12,10 +12,12 @@ Cuisine.init(
       autoIncrement: true,
     },
     name: {
-      states: {
-        type: sequelize.ENUM,
-        values: ["asian", "american", "italian", "mexican", "indian", " other"],
-      },
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    cuisine_image: {
+      type: DataTypes.STRING,
+      allowNull: false,
     },
   },
   {
@@ -25,3 +27,4 @@ Cuisine.init(
     modelName: "cuisine",
   }
 );
+module.exports = Cuisine;

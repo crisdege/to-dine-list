@@ -64,7 +64,7 @@ router.get('/restaurants/:id', withAuth, async (req, res) => {
 
         const restaurant = dbRestaurantData.get({ plain: true });
 
-        res.render('restaurant', { restaurant, loggedIn: req.session.loggedIn });
+        res.render('view-restaurant', { restaurants, loggedIn: req.session.loggedIn });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
