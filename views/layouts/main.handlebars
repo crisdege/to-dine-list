@@ -5,12 +5,18 @@
     <meta charset="UTF-8">
     
      <!--Import Google Icon Font-->
+        
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
       <!--Let browser know website is optimized for mobile-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link type="text/css" rel="stylesheet" href="css/syle.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Open+Sans:wght@400;700&family=Staatliches&display=swap"
+            rel="stylesheet"
+    />
     <title>To-Dine List</title>
     
     
@@ -19,13 +25,13 @@
 
 <body>
 
-    <header class="card-panel red lighten-3">
+    <header class="card-panel red darken-3 z-depth-5">
         <a href="/">
-            <h1 class="center-align">
+            <h1 class="center-align lime-text text-lighten-1" style="font-family: 'Fredoka One', sans-serif">
                 To-Dine List
             </h1>
         </a>
-        <h6 class="center-align">What's On The Menu Tonight?</h6>
+        <h6 class="center-align white-text">What's On The Menu Tonight?</h6>
     </header>
 
     <div class="row">
@@ -38,10 +44,14 @@
 
     {{#if loggedIn}}
     <script src="/js/logout.js"></script>
+    {{else}}
+    <script src="/js/login.js"></script>
     {{/if}}
 
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/logout.js"></script>
+    <script type="text/javascript" src="login.js"></script>
 </body>
 
 </html>
