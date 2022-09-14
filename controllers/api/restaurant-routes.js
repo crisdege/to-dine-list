@@ -1,9 +1,10 @@
 const router = require('express').Router();
-const { Restaurant, Cuisine } = require('../../models');
+const { Restaurant, Cuisine, Restaurant } = require('../../models');
 // middleware import
 const withAuth = require('../../utils/auth');
 
 // GET restaurants
+// not currently in use
 router.get('/', (req, res) => {
     Restaurant.findAll({
         include: [

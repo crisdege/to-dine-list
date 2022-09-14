@@ -23,13 +23,17 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create();
+const hbs = exphbs.create({});
 
+// set views directory for views
+app.set('views', path.join(__dirname, 'views'));
+// set view engine as .handlebars
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+// require static assets from public directory
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);

@@ -34,13 +34,12 @@
             <div>
                 <label for="cuisine">Cuisine Type</label>
                 <select name="cuisine" id="cuisine">
-                    {{!-- update values based on Cristina's Cuisine table --}}
                     {{!-- if statements make dropdown default to current value --}}
-                    <option value="1" {{#if cuisine1}}selected="selected"{{/if}}>American</option>
-                    <option value="2" {{#if cuisine2}}selected="selected"{{/if}}>Asian</option>
+                    <option value="2" {{#if cuisine2}}selected="selected"{{/if}}>American</option>
+                    <option value="1" {{#if cuisine1}}selected="selected"{{/if}}>Asian</option>
                     <option value="3" {{#if cuisine3}}selected="selected"{{/if}}>Indian</option>
-                    <option value="4" {{#if cuisine4}}selected="selected"{{/if}}>Italian</option>
-                    <option value="5" {{#if cuisine5}}selected="selected"{{/if}}>Mexican</option>
+                    <option value="5" {{#if cuisine5}}selected="selected"{{/if}}>Italian</option>
+                    <option value="4" {{#if cuisine4}}selected="selected"{{/if}}>Mexican</option>
                     <option value="6" {{#if cuisine6}}selected="selected"{{/if}}>Other</option>
                 </select>
             </div>
