@@ -11,4 +11,4 @@ async function logout() {
     }
   }
   
-  document.querySelector('#').addEventListener('click', logout); // need to add log out btn id
+  document.querySelector('#logout').addEventListener('click', logout); // need to add log out btn id
