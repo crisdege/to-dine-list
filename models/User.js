@@ -27,10 +27,6 @@ User.init(
         len: [6],
       },
     },
-    restaurant_id: {
-      type: DataTypes.ARRAY,
-      allowNull: true,
-    },
   },
   {
     hooks: {
