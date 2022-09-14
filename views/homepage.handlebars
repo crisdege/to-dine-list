@@ -12,7 +12,7 @@
     {{#if loggedIn}}
     <p>Click on a restaurant to see its details and add/change its rating.</p>
     <h2>More Options</h2>
-    <a class="sidebar-link" href="/add">Add A Restaurant</button>
+    <a class="sidebar-link" href="/add">Add A Restaurant</a>
     {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
     <button class="sidebar-btn" id="logout">Log Out</button>
     {{else}}
@@ -62,9 +62,8 @@
         {{#each restaurants as |restaurant|}}
         <div class="restaurant-card">
         {{!-- will need to add CSS to make div.restaurant change on hover so it's clearly a link --}}
-            {{> restaurant-info restaurant}}
             <h3>{{restaurant.name}}</h3>
-            <img src="/img/{{restaurant.imgName}}.jpg" class="restaurant-card-img">
+            <img src="/images/{{restaurant.cuisine.cuisine-image}}" class="restaurant-card-img" alt="">
             {{!-- if statements check which rating text to display --}}
             {{#if ratingCheck}}
             {{#if rating1}}<p><ion-icon name="star"></ion-icon> <ion-icon name="star-outline"></ion-icon> <ion-icon name="star-outline"></ion-icon></p>{{/if}}
@@ -86,7 +85,7 @@
     <p>Make a To-Dine List and filter it by cuisine when you need help deciding where to go.
         Once you’ve visited a restaurant, give it a rating so you know to go back.</p>
 
-    <p class="red-text">Create an account or log in to the left to get started.</p>
+    <p class="red-text">Create an account or log in to get started.</p>
     {{/if}}
 </main>
 {{!-- no need to add script for logout.js here, since it's conditionally added on main.handlebars --}}

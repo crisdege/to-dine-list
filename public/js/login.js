@@ -48,5 +48,5 @@ async function signupFormHandler(event) {
     }
   }
   
-  document.querySelector('#').addEventListener('submit', signupFormHandler); //need to add sign up btn id
-  document.querySelector('#').addEventListener('submit', loginFormHandler); //need to add sign in btn id
+  document.querySelector('#signup-btn').addEventListener('submit', signupFormHandler);
+  document.querySelector('#login-btn').addEventListener('submit', loginFormHandler);
