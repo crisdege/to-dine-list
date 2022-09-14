@@ -27,12 +27,12 @@
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="password">Password</label>
+                    <label for="password-signup">Password</label>
                     <input id="password" type="password" class="validate">
                 </div>
             </div>
             <div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="signup-btn">Sign Up
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -42,18 +42,18 @@
             <h4>Log In</h4>
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="username-signup">Username:</label>
+                    <label for="username-login">Username:</label>
                     <input type="text" id="username-signup" class="validate" />
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <label for="password">Password</label>
+                    <label for="password-login">Password</label>
                     <input id="password" type="password" class="validate">
                 </div>
             </div>
             <div>
-                <button class="btn waves-effect waves-light" type="submit" name="action">Log In
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="login-btn">Log In
                     <i class="material-icons right">send</i>
                 </button>
             </div>
@@ -105,4 +105,5 @@
 {{!-- no need to add script for logout.js here, since it's conditionally added on main.handlebars --}}
 <script src="/js/create.js"></script>
 <script src="/js/update-user.js"></script>
+
 {{!-- need to add script to edit restaurant when clicked --}}
