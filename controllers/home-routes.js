@@ -58,18 +58,18 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 // GET one restaurant
-router.get('/restaurants/:id', withAuth, async (req, res) => {
-    try {
-        const dbRestaurantData = await Restaurant.findByPk(req.params.id);
+// router.get('/:id', withAuth, async (req, res) => {
+//     try {
+//         const dbRestaurantData = await Restaurant.findByPk(req.params.id);
 
-        const restaurant = dbRestaurantData.get({ plain: true });
+//         const restaurant = dbRestaurantData.get({ plain: true });
 
-        res.render('view-restaurant', { restaurants, loggedIn: req.session.loggedIn });
-    } catch (err) {
-        console.log(err);
-        res.status(500).json(err);
-    }
-});
+//         res.render('view-restaurant', { restaurants, loggedIn: req.session.loggedIn });
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }
+// });
 
 router.get('/login', (req, res) => {
     if (req.session.loggedIn) {
