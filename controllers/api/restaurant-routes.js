@@ -28,7 +28,7 @@ router.get('/', (req, res) => {
         });
 });
 
-// GET one restaurant for view restauant page
+// GET one restaurant for view restaurant page
 router.get('/:id', withAuth, async (req, res) => {
     try {
         const dbRestaurantData = await Restaurant.findOne({

@@ -47,7 +47,7 @@ Restaurant.init(
     sequelize,
     freezeTableName: true,
     underscored: true,
-    modelName: "gallery",
+    modelName: "restaurant",
   }
 );
 module.exports = Restaurant;
