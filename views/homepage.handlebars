@@ -1,0 +1,109 @@
+{{!-- expects each restaurant object to have the following keys:
+    .name STRING
+    .imgName STRING (filename for image, based on cuisine type)
+
+    .ratingCheck BOOLEAN (false if not yet rated)
+    .rating1 BOOLEAN
+    .rating2 BOOLEAN
+    .rating3 BOOLEAN
+        only one rating# value should be true; if all false, ratingCheck should also be false
+ --}}
+<div class= "col s12 m4 l3 teal lighten-5">
+    {{#if loggedIn}}
+    <p>Click on a restaurant to see its details and add/change its rating.</p>
+    <h2>More Options</h2>
+    <a class="sidebar-link" href="/add">Add A Restaurant</a>
+    {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
+    <button class="sidebar-btn" id="logout">Log Out</button>
+    {{else}}
+    {{!-- <div > --}}
+        <form class="col s12">
+            <h4>Sign Up</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="username-signup">Username:</label>
+                    <input type="text" id="username-signup" class="validate" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="password-signup">Password</label>
+                    <input id="password" type="password" class="validate">
+                </div>
+            </div>
+            <div>
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="signup-btn">Sign Up
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+       
+        <form class="col s12">
+            <h4>Log In</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="username-login">Username:</label>
+                    <input type="text" id="username-signup" class="validate" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="password-login">Password</label>
+                    <input id="password" type="password" class="validate">
+                </div>
+            </div>
+            <div>
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="login-btn">Log In
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    {{!-- </div> --}}
+    {{/if}}
+</div>
+<main>
+    {{#if loggedIn}}
+    <h2>
+        My To-Dine List
+    </h2>
+    <div class="filter">
+        {{!-- add filter code here --}}
+    </div>
+    <div class="restaurant-list">
+        {{#each restaurants as |restaurant|}}
+        <div class="restaurant-card">
+        {{!-- will need to add CSS to make div.restaurant change on hover so it's clearly a link --}}
+            <h3>{{restaurant.name}}</h3>
+            <img src="/images/{{restaurant.cuisine.cuisine-image}}" class="restaurant-card-img" alt="">
+            {{!-- if statements check which rating text to display --}}
+            {{#if ratingCheck}}
+            {{#if rating1}}<p><ion-icon name="star"></ion-icon> <ion-icon name="star-outline"></ion-icon> <ion-icon name="star-outline"></ion-icon></p>{{/if}}
+            {{#if rating2}}<p><ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon> <ion-icon name="star-outline"></ion-icon></p>{{/if}}
+            {{#if rating3}}<p><ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon></p>{{/if}}
+            {{else}}
+            <p>I haven't rated this restaurant</p>
+            {{/if}}
+        </div>
+        {{/each}}
+    </div>
+    {{else}}
+    <div class="col s12 m8 l9">
+
+    <p class="flow-text">What was the name of that restaurant your friend has been telling you to try? And did
+        you try the new sushi place a couple weeks ago or the one across town?</p>
+
+    <p class="flow-text">You’ve got enough on your plate already. Let us keep track of your restaurant list so
+        you can just worry about what you’re going to order.</p>
+
+    <p class="flow-text">Make a To-Dine List and filter it by cuisine when you need help deciding where to go.
+        Once you’ve visited a restaurant, give it a rating so you know to go back.</p>
+
+    <p class="red-text flow-text">Create an account or log in to get started.</p>
+    </div>
+    {{/if}}
+</main>
+{{!-- no need to add script for logout.js here, since it's conditionally added on main.handlebars --}}
+<script src="/js/create.js"></script>
+<script src="/js/update-user.js"></script>
+
+{{!-- need to add script to edit restaurant when clicked --}}

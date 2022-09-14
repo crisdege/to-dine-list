@@ -1,0 +1,73 @@
+{{!-- expects formatted restaurant object with the following keys:
+    .name STRING
+    .location STRING
+    .notes STRING
+
+    .cuisine1 BOOLEAN (true if value is 1)
+    .cuisine2 BOOLEAN (true if value is 2)
+    ...
+    .cuisine6 BOOLEAN (true if value is 6)
+        only one cuisine# value shoule be true
+
+    .ratingCheck BOOLEAN (false if not yet rated)
+    .rating1 BOOLEAN (true if rated 1 star)
+    .rating2 BOOLEAN (true if rated 2 stars)
+    .rating3 BOOLEAN (true if rated 3 stars)
+        no more than one rating# value should be true
+ --}}
+<section class="sidebar">
+    <h2>More Options</h2>
+    <a class="sidebar-link" href="/">Discard Changes</a>
+    {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
+    <button class="sidebar-btn" id="logout">Log Out</button>
+</section>
+<main>
+    <div class="main-form">
+        <h2>
+            Edit a Restaurant
+        </h2>
+        <form id="add-form">
+            <div>
+                <label for="restaurant-name">Restaurant Name</label>
+                <input type="text" id="restaurant-name" value="{{restaurant.name}}" />
+            </div>
+            <div>
+                <label for="cuisine">Cuisine Type</label>
+                <select name="cuisine" id="cuisine">
+                    {{!-- if statements make dropdown default to current value --}}
+                    <option value="2" {{#if cuisine2}}selected="selected"{{/if}}>American</option>
+                    <option value="1" {{#if cuisine1}}selected="selected"{{/if}}>Asian</option>
+                    <option value="3" {{#if cuisine3}}selected="selected"{{/if}}>Indian</option>
+                    <option value="5" {{#if cuisine5}}selected="selected"{{/if}}>Italian</option>
+                    <option value="4" {{#if cuisine4}}selected="selected"{{/if}}>Mexican</option>
+                    <option value="6" {{#if cuisine6}}selected="selected"{{/if}}>Other</option>
+                </select>
+            </div>
+            <div>
+                <label for="location">Location</label>
+                <input type="text" id="location" value="{{restaurant.location}}" />
+            </div>
+            <div>
+                <label for="cuisine">Rating</label>
+                <select name="cuisine" id="cuisine">
+                    {{!-- unless/if statements make dropdown default to current value --}}
+                    <option value="0" {{#unless ratingCheck}}selected="selected"{{/unless}}>No Rating</option>
+                    <option value="1" {{#if rating1}}selected="selected"{{/if}}>1 Star</option>
+                    <option value="2" {{#if rating2}}selected="selected"{{/if}}>2 Stars</option>
+                    <option value="3" {{#if rating3}}selected="selected"{{/if}}>3 Stars</option>
+                </select>
+            </div>
+            <div>
+                <label for="notes">Notes</label>
+                <textarea id="notes">{{restaurant.notes}}</textarea>
+            </div>
+            <div>
+                <button type="submit" class="main-form-btn" id="edit-btn">Edit Restaurant</button>
+            </div>
+        </form>
+    </div>
+</main>
+{{!-- no need to add script for logout.js here, since it's conditionally added on main.handlebars --}}
+<script src="/js/edit-restaurant.js"></script>
+<script src="/js/update-user.js"></script>
+{{!-- need to create script in update-user.js --}}
