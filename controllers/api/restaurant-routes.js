@@ -74,16 +74,16 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   const dbRestaurantData = await Restaurant.findOne({
     where: { id: req.params.id },
     attributes: ["name", "cuisine", "rating", "location", "notes", "user_id"],
-    include: [
-      {
-        model: Cuisine,
-        attributes: ["id", "name", "cuisine_image"],
-      },
-      // {
-      //   model: User,
-      //   attributes: ["username"],
-      // }
-    ],
+    // include: [
+    // {
+    //   model: Cuisine,
+    //   attributes: ["id", "name", "cuisine_image"],
+    // },
+    // {
+    //   model: User,
+    //   attributes: ["username"],
+    // }
+    // ],
   })
     .then((dbRestaurantData) => {
       if (!dbRestaurantData) {
