@@ -172,6 +172,7 @@ router.post("/", withAuth, (req, res) => {
     location: req.body.location,
     rating: req.body.rating,
     notes: req.body.notes,
+    user_id: req.session.user_id
   })
     .then((dbRestaurantData) => {
       res.json(dbRestaurantData);

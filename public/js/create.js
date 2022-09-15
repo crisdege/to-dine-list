@@ -7,6 +7,12 @@ async function newFormHandler(event) {
     const rating = document.querySelector('select[name="rating"]').value;
     const notes = document.querySelector('textarea[name="notes"]').value;
 
+    console.log(name)
+    console.log(cuisine_id)
+    console.log(location)
+    console.log(rating)
+    console.log(notes)
+
     const response = await fetch(`/api/restaurants`, {
       method: 'POST',
       body: JSON.stringify({
@@ -28,4 +34,5 @@ async function newFormHandler(event) {
     }
   }
   
-  document.querySelector('#add-btn').addEventListener('submit', newFormHandler);
+  // document.querySelector('#add-btn').addEventListener('submit', newFormHandler);
+  document.querySelector('#add-form').addEventListener('submit', newFormHandler);

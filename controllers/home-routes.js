@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Restaurant, Cuisine, User } = require("../models");
 // middleware import
-// const withAuth = require('../utils/auth');
+const withAuth = require('../utils/auth');
 
 // GET restaurants list for homepage
 router.get("/", async (req, res) => {
@@ -23,10 +23,7 @@ router.get("/", async (req, res) => {
       ],
     })
       .then((dbRestaurantData) => {
-        console.log('returned data:')
-        console.log(dbRestaurantData)
-
-        if (!dbRestaurantData) {
+        if (dbRestaurantData.length == 0) {
           // if the user has no restaurants, go to add restaurant page
           res.render("add-restaurant");
         } else {
@@ -69,6 +66,11 @@ router.get("/", async (req, res) => {
         res.status(500).json(err);
       });
   }
+});
+
+// render add a restaurant page
+router.get('/add', withAuth, (req, res) => {
+  res.render('add-restaurant');
 });
 
 // GET one restaurant

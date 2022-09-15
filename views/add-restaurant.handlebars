@@ -1,7 +1,7 @@
 <section class="sidebar">
     <h2>More Options</h2>
     <a class="sidebar-link" href="/">Discard Changes</a>
-    <button class="sidebar-btn" id="update-user">Change My Password</button>
+    {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
     <button class="sidebar-btn" id="logout">Log Out</button>
 </section>
 <main>
@@ -16,8 +16,7 @@
             </div>
             <div>
                 <label for="cuisine">Cuisine Type</label>
-                <select name="cuisine" id="cuisine">
-                    {{!-- update values based on Cristina's Cuisine table --}}
+                <select name="cuisine" id="cuisine" style="display: block">
                     <option value="2">American</option>
                     <option value="1">Asian</option>
                     <option value="3">Indian</option>
@@ -32,8 +31,8 @@
             </div>
             <div>
                 <label for="rating">Rating</label>
-                <select name="rating" id="rating">
-                    <option value="0" selected="selected">No Rating</option>
+                <select name="rating" id="rating" style="display: block;">
+                    <option value="0" selected>No Rating</option>
                     <option value="1">1 Star</option>
                     <option value="2">2 Stars</option>
                     <option value="3">3 Stars</option>
@@ -49,8 +48,7 @@
         </form>
     </div>
 </main>
-{{!-- no need to add script for logout.js here, since it's conditionally added on main.handlebars --}}
 <script src="/js/create.js"></script>
-<script src="/js/update-user.js"></script>
-{{!-- need to create script for update-user.js --}}
+<script src="/js/logout.js"></script>
+{{!-- <script src="/js/update-user.js"></script> --}}
     
