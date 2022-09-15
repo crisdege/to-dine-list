@@ -10,11 +10,22 @@
  --}}
 <div class= "col s12 m4 l3 teal lighten-5">
     {{#if loggedIn}}
-    <p>Click on a restaurant to see its details and add/change its rating.</p>
-    <h2>More Options</h2>
-    <a class="sidebar-link" href="/add">Add A Restaurant</a>
+    <p class="flow-text">Click on a restaurant to see its details and add/change its rating.</p>
+    <h3 class="center-align">More Options</h3>
+    
+    <p class="center-align">
+        <button class="btn waves-effect waves-light btn-small" type="submit" name="action" id="">Add A Restaurant
+            <i class="material-icons right">send</i>
+        </button>
+    </p>
+    {{!-- <a class="col s12" href="/add">Add A Restaurant</a> --}}
     {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
-    <button class="sidebar-btn" id="logout">Log Out</button>
+    <p class="center-align">
+        <button class="btn waves-effect waves-light btn-small" type="submit" name="action" id="logout">Log Out
+            <i class="material-icons right">send</i>
+        </button>
+    </p>
+    {{!-- <button class="sidebar-btn" id="logout">Log Out</button> --}}
     {{else}}
     {{!-- <div > --}}
         <form class="col s12" id="signup-form">
