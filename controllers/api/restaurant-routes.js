@@ -28,40 +28,45 @@ router.get("/:id", withAuth, async (req, res) => {
     const dbRestaurantData = await Restaurant.findOne({
       where: { id: req.params.id },
       attributes: ["name", "cuisine", "rating", "location", "notes"],
-      include: [
-        {
-          model: Cuisine,
-          attributes: ["id", "name", "cuisine-image"],
-        },
-      ],
+      // include: [
+      //   {
+      //     model: Cuisine,
+      //     attributes: ["id", "name", "cuisine-image"],
+      //   },
+      // ],
     });
 
     const restaurant = dbRestaurantData.get({ plain: true });
 
     // add boolean values for displaying ratings
-    restaurant.rating1 = false;
-    restaurant.rating2 = false;
-    restaurant.rating3 = false;
-
     if (restaurant.rating === 0) {
       restaurant.ratingCheck = false;
     } else {
       restaurant.ratingCheck = true;
+    }
 
-      if (restaurant.rating === 1) {
-        restaurant.rating1 = true;
-      } else if (restaurant.rating === 2) {
-        restaurant.rating2 = true;
-      } else {
-        restaurant.rating3 = true;
-      }
+    if (restaurant.rating === 1) {
+      restaurant.rating1 = true;
+    } else {
+      restaurant.rating1 = false;
+    }
+
+    if (restaurant.rating === 2) {
+      restaurant.rating2 = true;
+    } else {
+      restaurant.rating2 = false;
+    }
+
+    if (restaurant.rating === 3) {
+      restaurant.rating3 = true;
+    } else {
+      restaurant.rating3 = false;
     }
 
     // add code for selecting correct image
 
     res.render("view-restaurant", {
-      restaurant,
-      loggedIn: req.session.loggedIn,
+      restaurant
     });
   } catch (err) {
     console.log(err);
@@ -94,9 +99,9 @@ router.get("/edit/:id", withAuth, async (req, res) => {
         let restaurant = dbRestaurantData.get({ plain: true });
 
         // add boolean values for displaying ratings
-        restaurant.rating1 = false;
-        restaurant.rating2 = false;
-        restaurant.rating3 = false;
+        // restaurant.rating1 = false;
+        // restaurant.rating2 = false;
+        // restaurant.rating3 = false;
 
         if (restaurant.rating === 0) {
           restaurant.ratingCheck = false;

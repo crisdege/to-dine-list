@@ -12,7 +12,7 @@
         no more than one rating# value should be true; if all false, ratingCheck should be false
 --}}
 <div class="col s12 m4 l3 teal lighten-5">
-    <h3>More Options</h3>
+    <h4>More Options</h4>
     {{!-- <button class="sidebar-btn" id="edit-restaurant">Edit This Restaurant</button> --}}
     {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
     <button class="sidebar-btn" id="logout">Log Out</button>
@@ -23,15 +23,15 @@
     </h2>
     
     <div class="restaurant-view">
-        <p><a href="/">&lt;&lt;Back to My To-Dine List</a></p>
-        <img src="/img/{{restaurant.imgName}}.jpg" class="restaurant-view-img">
-        <p>Cuisine: <span class="red-text">{{restaurant.cuisine.name}}</span></p>
+        <p><a href="/">&lt;&lt; Back to My To-Dine List</a></p>
+        <img src="/images/asian_2.jpg" alt="plate of sushi" style="max-width: 350px;" />
+        <p>Cuisine: <span class="red-text">{{restaurant.cuisine}}</span></p>
         <p>Location: <span class="red-text">{{restaurant.location}}</span></p>
-        <p>
+        <p style="font-size: 25px">
             Rating: {{#unless ratingCheck}}<span class="red-text">None</span>{{/unless}}
-            {{#if rating1}}<ion-icon name="star"></ion-icon> <ion-icon name="star-outline"></ion-icon> <ion-icon name="star-outline"></ion-icon>{{/if}}
-            {{#if rating2}}<ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon> <ion-icon name="star-outline"></ion-icon>{{/if}}
-            {{#if rating3}}<ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon>{{/if}}
+            {{#if rating1}}<span class="red-text"><ion-icon name="star"></ion-icon> <ion-icon name="star-outline"></ion-icon> <ion-icon name="star-outline"></ion-icon></span>{{/if}}
+            {{#if rating2}}<span class="red-text"><ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon> <ion-icon name="star-outline"></ion-icon></span>{{/if}}
+            {{#if rating3}}<span class="red-text"><ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon> <ion-icon name="star"></ion-icon></span>{{/if}}
         </p>
         <p>
             Notes:<br />
