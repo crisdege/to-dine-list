@@ -23,35 +23,48 @@ router.get("/", async (req, res) => {
       ],
     })
       .then((dbRestaurantData) => {
-        if (dbRestaurantData.length == 0) {
+        // serialize restaurants list
+        const restaurantData = dbRestaurantData.map(restaurant => restaurant.get({ plain: true }));
+
+        console.log('restaurantData')
+        console.log(restaurantData)
+
+        if (restaurantData.length == 0) {
           // if the user has no restaurants, go to add restaurant page
           res.render("add-restaurant");
         } else {
-          // if the user has restaurants, clean them up for use by handlebars
-          const restaurantData = dbRestaurantData.map((restaurant) =>
-            restaurantData.get({ plain: true })
-          );
-
           // add boolean values for displaying ratings
-          let restaurants = restaurantData.map((restaurant) => {
-            restaurant.rating1 = false;
-            restaurant.rating2 = false;
-            restaurant.rating3 = false;
+          // let restaurants = restaurantData.map((...restaurant) => {
+            
+          let restaurants = [];
 
-            if (restaurant.rating === 0) {
-              restaurant.ratingCheck = false;
+          for (i = 0; i < restaurantData.length; i++) {
+
+            if (restaurantData[i].rating === 0) {
+              restaurantData[i].ratingCheck = false;
             } else {
-              restaurant.ratingCheck = true;
+              restaurantData[i].ratingCheck = true;
+            };
 
-              if (restaurant.rating === 1) {
-                restaurant.rating1 = true;
-              } else if (restaurant.rating === 2) {
-                restaurant.rating2 = true;
-              } else {
-                restaurant.rating3 = true;
-              }
-            }
-          });
+            if (restaurantData[i].rating === 1) {
+              restaurantData[i].rating1 = 'star';
+              restaurantData[i].rating2 = 'star-outline';
+              restaurantData[i].rating3 = 'star-outline';
+            } else if (restaurantData[i].rating ===2) {
+              restaurantData[i].rating1 = 'star';
+              restaurantData[i].rating2 = 'star';
+              restaurantData[i].rating3 = 'star-outline';
+            } else if (restaurantData[i].rating === 3) {
+              restaurantData[i].rating1 = 'star';
+              restaurantData[i].rating2 = 'star';
+              restaurantData[i].rating3 = 'star';
+            };
+
+            restaurants.push(restaurantData[i]);
+          };
+
+          console.log('restaurants')
+          console.log(restaurants);
 
           // render homepage with user's restaurants
           res.render("homepage", {

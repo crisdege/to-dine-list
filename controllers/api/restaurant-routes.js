@@ -165,7 +165,9 @@ router.get("/edit/:id", withAuth, async (req, res) => {
 });
 
 // POST or create new restaurant card
-router.post("/", withAuth, (req, res) => {
+router.post("/", withAuth, async (req, res) => {
+  console.log('creating restaurant')
+
   Restaurant.create({
     name: req.body.name,
     cuisine: req.body.cuisine_id,
