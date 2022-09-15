@@ -17,7 +17,8 @@ async function editFormHandler(event) {
       cuisine,
       location,
       rating,
-      notes,
+      note,
+      user_id,
     }),
     headers: {
       "Content-Type": "application/json",
@@ -25,10 +26,10 @@ async function editFormHandler(event) {
   });
 
   if (response.ok) {
-    document.location.replace('/');
+    document.location.replace("/");
   } else {
     alert(response.statusText);
-  };
+  }
 }
 
-document.querySelector("#edit-btn").addEventListener("submit", editFormHandler);
+document.querySelector("#add-form").addEventListener("submit", editFormHandler);

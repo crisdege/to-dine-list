@@ -64,21 +64,21 @@ router.get("/:id", withAuth, async (req, res) => {
     }
 
     if (restaurant.cuisine === 1) {
-      restaurant.cuisine_name = 'Asian';
+      restaurant.cuisine_name = "Asian";
     } else if (restaurant.cuisine === 2) {
-      restaurant.cuisine_name = 'American';
+      restaurant.cuisine_name = "American";
     } else if (restaurant.cuisine === 3) {
-      restaurant.cuisine_name = 'Indian';
+      restaurant.cuisine_name = "Indian";
     } else if (restaurant.cuisine === 4) {
-      restaurant.cuisine_name = 'Mexican';
+      restaurant.cuisine_name = "Mexican";
     } else if (restaurant.cuisine === 5) {
-      restaurant.cuisine_name = 'Italian';
+      restaurant.cuisine_name = "Italian";
     } else {
-      restaurant.cuisine_name = 'Other';
-    };
+      restaurant.cuisine_name = "Other";
+    }
 
     res.render("view-restaurant", {
-      restaurant
+      restaurant,
     });
   } catch (err) {
     console.log(err);
@@ -246,14 +246,16 @@ router.put("/:id", withAuth, (req, res) => {
       },
     }
   )
-    .then((dbRestaurantData) => {
-      if (!dbRestaurantData) {
-        res.status(404).json({ message: "No restaurant found with this id" });
-        return;
-      } else {
-        console.log(dbRestaurantData);
-      }
+    .then((updatedRestaurant) => {
+      res.json(updatedRestaurant);
     })
+    .then(
+      res.render("homepage", {
+        restaurants,
+        loggedIn: req.session.loggedIn,
+        user_id: req.session.user_id,
+      })
+    )
     .catch((err) => {
       console.log(err);
       res.status(500).json(err);
