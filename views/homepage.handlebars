@@ -9,21 +9,21 @@
         only one rating# value should be true; if all false, ratingCheck should also be false
  --}}
  
-<div class= "col s12 m4 l3 teal lighten-5">
+<div class= "col s12 m4 l2 teal lighten-5">
     {{#if loggedIn}}
-    <p class="flow-text">Click on a restaurant to see its details and add/change its rating.</p>
-    <h3 class="center-align">More Options</h3>
+    <p>Click on a restaurant to see its details and add/change its rating.</p>
+    <h4 class="center-align">More Options</h4>
     
     <p class="center-align">
-        <a class="btn waves-effect waves-light btn-small" href="/add" name="add-a-restaurant">Add A Restaurant
-            <i class="material-icons right">send</i>
+        <a class="btn waves-effect waves-light btn-small" href="/add" name="add-a-restaurant">Add Restaurant
+            <i class="material-icons right">add</i>
         </a>
     </p>
     {{!-- <a class="col s12" href="/add">Add A Restaurant</a> --}}
     {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
     <p class="center-align">
         <button class="btn waves-effect waves-light btn-small" type="submit" name="action" id="logout">Log Out
-            <i class="material-icons right">send</i>
+            <i class="material-icons right">exit_to_app</i>
         </button>
     </p>
     {{!-- <button class="sidebar-btn" id="logout">Log Out</button> --}}
@@ -73,7 +73,7 @@
     {{!-- </div> --}}
     {{/if}}
 </div>
-<div class="col s12 m8 l9">
+<div class="col s12 m8 l10">
     {{#if loggedIn}}
     <div>
         <h2>
@@ -83,31 +83,29 @@
     <div class="filter">
         {{!-- add filter code here --}}
     </div>
-    <div class="restaurant-list" id="restaurants-list">
+    <div class="row">
+        <div class="restaurant-list" id="restaurants-list">
         {{#each restaurants as |restaurant|}}
-
-        <div class="row">
-            <div class="col s12 m6">
+            <div class="col s12 m6 l5">
                 <div class="card">
-                        <div class="card-image">
-                           <img src="/images/asian_2.jpg" />;
-                            <span class="card-title" >{{restaurant.name}}</span>
-                            <a class="btn-floating halfway-fab waves-effect waves-light red" href="/edit"><i class="material-icons">add</i></a>
-                            
-                        </div>
-                    
-                <div class="card-content">
+                    <div class="card-image">
+                           <img src="/images/asian_2.jpg" />
+                            <span class="card-title" ><b>{{restaurant.name}}</b></span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red" href="/api/restaurants/edit/{{restaurant.id}}"><i class="material-icons">create</i></a>
+                    </div>
+                </div>
+                <div class="card-content" style="padding-left: 10px; padding: right: 10px;">
                     {{#if restaurant.ratingCheck}}
-                        <p><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></p>
+                        <span style="font-size: 25px"><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></span>
                     {{else}}
-                        <p>I haven't rated this restaurant</p>
+                        <span style="font-size: 25px">No Rating</span>
                     {{/if}}
-                    <button class="btn waves-effect waves-light" type="button" name="/edit/{{restaurant.id}}">Edit This Restaurant
-                    <i class="material-icons right">send</i>
-            </button>
-        </div>
+                    {{!-- <button class="btn waves-effect waves-light" type="button" name="/edit/{{restaurant.id}}">Edit This Restaurant
+                    <i class="material-icons right">send</i> --}}
+                    {{!-- </button> --}}
+                </div>
             </div>
-            </div>
+        {{/each}}
         </div>
         
 
@@ -122,7 +120,6 @@
             {{!-- <p>I haven't rated this restaurant</p> --}}
             {{!-- {{/if}} --}}
         {{!-- </div> --}}
-        {{/each}}
     </div>
     {{else}}
     <div class="col s12 m8 l9">

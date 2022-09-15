@@ -22,10 +22,21 @@ body {
     border: 1px solid goldenrod;
   }
 
+  header {
+    margin-top: 0 !important;
+  }
+
   footer {
     text-align: center;
+    margin: 0 !important;
+    margin-top: auto !important;
   }
 
   footer p {
     color: white;
+  }
+
+  .card-title {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
   }
