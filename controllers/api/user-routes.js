@@ -69,6 +69,7 @@ router.post('/login', async (req, res) => {
 
         req.session.save(() => {
             req.session.loggedIn = true;
+            req.session.user_id = dbUserData.id;
 
             res
                 .status(200)
@@ -84,7 +85,7 @@ router.post('/login', async (req, res) => {
 router.post('/logout', (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
-            document.location.replace('/');
+            res.render('homepage', { loggedIn: false });
         });
     } else {
         res.status(404).end();

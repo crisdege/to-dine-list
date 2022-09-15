@@ -7,20 +7,13 @@ const withAuth = require("../../utils/auth");
 // not currently in use
 router.get("/", (req, res) => {
   Restaurant.findAll({
+    attributes: ["id", "name", "cuisine_id", "location", "rating", "notes"],
     include: [
-      {
-        model: Restaurant,
-        attributes: ["id", "name", "cuisine_id", "location", "rating", "notes"],
-        include: {
-          model: Cuisine,
-          attributes: ["id", "name"],
-        },
-      },
       {
         model: Cuisine,
         attributes: ["id", "name"],
       },
-    ],
+    ]
   })
     .then((dbRestaurantData) => res.json(dbRestaurantData))
     .catch((err) => {
@@ -34,16 +27,15 @@ router.get("/:id", withAuth, async (req, res) => {
   try {
     const dbRestaurantData = await Restaurant.findOne({
       where: { id: req.params.id },
+      attributes: [
+        "name", "cuisine_id", "rating", "location", "notes"
+      ],
       include: [
         {
-          model: Restaurant,
-          attributes: ["name", "cuisine_id", "rating", "location", "notes"],
-        },
-        {
           model: Cuisine,
-          attributes: ["id", "name"],
-        },
-      ],
+          attributes: ["id", "name", "cuisine-image"],
+        }
+      ]
     });
 
     const restaurant = dbRestaurantData.get({ plain: true });
@@ -83,23 +75,18 @@ router.get("/:id", withAuth, async (req, res) => {
 router.get("/edit/:id", withAuth, async (req, res) => {
   const dbRestaurantData = await Restaurant.findOne({
     where: { id: req.params.id },
+    attributes: [
+      "name", "cuisine_id", "rating", "location", "notes"
+    ],
     include: [
       {
-        model: Restaurant,
-        attributes: ["name", "cuisine_id", "rating", "location", "notes"],
-      },
-      {
         model: Cuisine,
-        attributes: ["id", "name", "cuisine_image"],
-        include: {
-          model: User,
-          attributes: ["username"],
-        },
-      },
-      {
-        model: User,
-        attributes: ["username"],
-      },
+        attributes: ["id", "name", "cuisine_image"]
+      }
+      // {
+      //   model: User,
+      //   attributes: ["username"],
+      // }
     ],
   })
     .then((dbRestaurantData) => {

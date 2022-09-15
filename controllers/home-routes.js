@@ -5,68 +5,69 @@ const { Restaurant, Cuisine, User } = require("../models");
 
 // GET restaurants list for homepage
 router.get("/", async (req, res) => {
-  if (!req.session.loggedIn) {
+  if (!req.session.loggedIn || !req.session.user_id) {
     // render homepage without user authentication
     res.render("homepage", { loggedIn: false });
   } else {
     // render homepage with user's restaurants list
-    try {
-      const dbRestaurantData = await Restaurant.findAll({
-        // get restaurants by user id
-        // get user id from session id
-        where: { user_id: req.session.user_id },
-        include: [
-          {
-            model: Restaurant,
-            attributes: ["id", "name", "cuisine_id", "rating"],
-          },
-          {
-            model: Cuisine,
-            attributes: ["id", "name", "cuisine_image"],
-          },
-        ],
-      });
-    } catch (err) {
-      console.log(err);
-      res.status(500).json(err);
-    }
+    Restaurant.findAll({
+      // get restaurants by user id
+      // get user id from session id
+      where: { user_id: req.session.user_id },
+      attributes: ["id", "name", "cuisine_id", "rating"],
+      include: [
+        {
+          model: Cuisine,
+          attributes: ["id", "name", "cuisine_image"],
+        },
+      ],
+    })
+      .then((dbRestaurantData) => {
+        console.log('returned data:')
+        console.log(dbRestaurantData)
 
-    if (!dbRestaurantData) {
-      // if the user has no restaurants, go to add restaurant page
-      res.render("add-restaurant", { loggedIn: req.session.loggedIn });
-    } else {
-      // if the user has restaurants, clean them up for use by handlebars
-      const restaurantData = dbRestaurantData.map((restaurant) =>
-        restaurantData.get({ plain: true })
-      );
-
-      // add boolean values for displaying ratings
-      let restaurants = restaurantData.map((restaurant) => {
-        restaurant.rating1 = false;
-        restaurant.rating2 = false;
-        restaurant.rating3 = false;
-
-        if (restaurant.rating === 0) {
-          restaurant.ratingCheck = false;
+        if (!dbRestaurantData) {
+          // if the user has no restaurants, go to add restaurant page
+          res.render("add-restaurant");
         } else {
-          restaurant.ratingCheck = true;
+          // if the user has restaurants, clean them up for use by handlebars
+          const restaurantData = dbRestaurantData.map((restaurant) =>
+            restaurantData.get({ plain: true })
+          );
 
-          if (restaurant.rating === 1) {
-            restaurant.rating1 = true;
-          } else if (restaurant.rating === 2) {
-            restaurant.rating2 = true;
-          } else {
-            restaurant.rating3 = true;
-          }
+          // add boolean values for displaying ratings
+          let restaurants = restaurantData.map((restaurant) => {
+            restaurant.rating1 = false;
+            restaurant.rating2 = false;
+            restaurant.rating3 = false;
+
+            if (restaurant.rating === 0) {
+              restaurant.ratingCheck = false;
+            } else {
+              restaurant.ratingCheck = true;
+
+              if (restaurant.rating === 1) {
+                restaurant.rating1 = true;
+              } else if (restaurant.rating === 2) {
+                restaurant.rating2 = true;
+              } else {
+                restaurant.rating3 = true;
+              }
+            }
+          });
+
+          // render homepage with user's restaurants
+          res.render("homepage", {
+            restaurants,
+            loggedIn: req.session.loggedIn,
+            user_id: req.session.user_id
+          });
         }
+      })
+      .catch((err) => {
+        console.log(err);
+        res.status(500).json(err);
       });
-
-      // render homepage with user's restaurants
-      res.render("homepage", {
-        restaurants,
-        loggedIn: req.session.loggedIn,
-      });
-    }
   }
 });
 
