@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
         model: Cuisine,
         attributes: ["id", "name"],
       },
-    ]
+    ],
   })
     .then((dbRestaurantData) => res.json(dbRestaurantData))
     .catch((err) => {
@@ -27,15 +27,13 @@ router.get("/:id", withAuth, async (req, res) => {
   try {
     const dbRestaurantData = await Restaurant.findOne({
       where: { id: req.params.id },
-      attributes: [
-        "name", "cuisine_id", "rating", "location", "notes"
-      ],
+      attributes: ["name", "cuisine_id", "rating", "location", "notes"],
       include: [
         {
           model: Cuisine,
           attributes: ["id", "name", "cuisine-image"],
-        }
-      ]
+        },
+      ],
     });
 
     const restaurant = dbRestaurantData.get({ plain: true });
@@ -75,14 +73,12 @@ router.get("/:id", withAuth, async (req, res) => {
 router.get("/edit/:id", withAuth, async (req, res) => {
   const dbRestaurantData = await Restaurant.findOne({
     where: { id: req.params.id },
-    attributes: [
-      "name", "cuisine_id", "rating", "location", "notes"
-    ],
+    attributes: ["name", "cuisine_id", "rating", "location", "notes"],
     include: [
       {
         model: Cuisine,
-        attributes: ["id", "name", "cuisine_image"]
-      }
+        attributes: ["id", "name", "cuisine_image"],
+      },
       // {
       //   model: User,
       //   attributes: ["username"],
@@ -164,9 +160,28 @@ router.get("/edit/:id", withAuth, async (req, res) => {
     });
 });
 
+router.get("/images", (req, res) => {
+  try {
+    const dbImageData = Restaurant.findByPk(req.params.id, {
+      include: [
+        {
+          model: Cuisine,
+          attributes: ["id", "name", "cuisine_image"],
+        },
+      ],
+    });
+
+    const image = dbImageData.get({ plain: true });
+    res.render("cuisine", { image, loggedIn: req.session.loggedIn });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 // POST or create new restaurant card
 router.post("/", withAuth, async (req, res) => {
-  console.log('creating restaurant')
+  console.log("creating restaurant");
 
   Restaurant.create({
     name: req.body.name,
@@ -174,7 +189,7 @@ router.post("/", withAuth, async (req, res) => {
     location: req.body.location,
     rating: req.body.rating,
     notes: req.body.notes,
-    user_id: req.session.user_id
+    user_id: req.session.user_id,
   })
     .then((dbRestaurantData) => {
       res.json(dbRestaurantData);
