@@ -74,28 +74,50 @@
 </div>
 <div class="col s12 m8 l9">
     {{#if loggedIn}}
-    <h2>
-        My To-Dine List
-    </h2>
+    <div>
+        <h2>
+            My To-Dine List
+        </h2>
+    </div>
     <div class="filter">
         {{!-- add filter code here --}}
     </div>
     <div class="restaurant-list" id="restaurants-list">
         {{#each restaurants as |restaurant|}}
-        <div class="restaurant-card">
-        {{!-- will need to add CSS to make div.restaurant change on hover so it's clearly a link --}}
-            <h3>{{restaurant.name}}</h3>
-            <img src="/images/{{restaurant.cuisine.cuisine_image}}" class="restaurant-card-img" alt="">
-            {{!-- if statement checks which rating text to display --}}
-            {{#if restaurant.ratingCheck}}
-            <p><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></p>
-            {{else}}
-            <p>I haven't rated this restaurant</p>
-            {{/if}}
-            <button class="btn waves-effect waves-light" type="button" name="edit/{{restaurant.id}}">Edit This Restaurant
+
+        <div class="row">
+            <div class="col s12 m7">
+                <div class="card">
+                <div class="card-image">
+                    <img src="/images/american_1.jpg">
+                    <span class="card-title" >{{restaurant.name}}</span>
+                </div>
+                <div class="card-content">
+                    {{#if restaurant.ratingCheck}}
+                        <p><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></p>
+                    {{else}}
+                        <p>I haven't rated this restaurant</p>
+                    {{/if}}
+                    <button class="btn waves-effect waves-light" type="button" name="edit/{{restaurant.id}}">Edit This Restaurant
                     <i class="material-icons right">send</i>
             </button>
         </div>
+            </div>
+            </div>
+        </div>
+        
+
+        {{!-- <div class="restaurant-card"> --}}
+        {{!-- will need to add CSS to make div.restaurant change on hover so it's clearly a link --}}
+            {{!-- <h3>{{restaurant.name}}</h3> --}}
+            {{!-- <img src="/images/{{restaurant.cuisine.cuisine_image}}" class="restaurant-card-img" alt=""> --}}
+            {{!-- if statement checks which rating text to display --}}
+            {{!-- {{#if restaurant.ratingCheck}} --}}
+            {{!-- <p><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></p> --}}
+            {{!-- {{else}} --}}
+            {{!-- <p>I haven't rated this restaurant</p> --}}
+            {{!-- {{/if}} --}}
+        {{!-- </div> --}}
         {{/each}}
     </div>
     {{else}}
@@ -119,6 +141,7 @@
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 <script src="/js/load-edit-view.js"></script>
+{{!-- <script src="/js/load-images.js"></script> --}}
 {{!-- <script src="/js/update-user.js"></script> --}}
 {{!-- need to add script to edit restaurant when clicked --}}
 {{else}}
