@@ -11,13 +11,13 @@
     .rating3 BOOLEAN (true if rated 3 stars)
         no more than one rating# value should be true; if all false, ratingCheck should be false
 --}}
-<section class="sidebar">
-    <h2>More Options</h2>
+<div class="col s12 m4 l3 teal lighten-5">
+    <h3>More Options</h3>
     <button class="sidebar-btn" id="edit-restaurant">Edit This Restaurant</button>
     {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
     <button class="sidebar-btn" id="logout">Log Out</button>
-</section>
-<main>
+</div>
+<div class="col s12 m8 l9">
     {{> restaurant-info restaurant}}
     <h2>
         {{restaurant.name}}
@@ -38,7 +38,7 @@
             <span class="red-text">{{restaurant.notes}}</span>
         </p>
     </div>
-</main>
+</div>
 <script src="/js/logout.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
