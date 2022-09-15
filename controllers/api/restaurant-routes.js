@@ -7,7 +7,7 @@ const withAuth = require("../../utils/auth");
 // not currently in use
 router.get("/", (req, res) => {
   Restaurant.findAll({
-    attributes: ["id", "name", "cuisine_id", "location", "rating", "notes"],
+    attributes: ["id", "name", "cuisine", "location", "rating", "notes"],
     include: [
       {
         model: Cuisine,
@@ -27,7 +27,7 @@ router.get("/:id", withAuth, async (req, res) => {
   try {
     const dbRestaurantData = await Restaurant.findOne({
       where: { id: req.params.id },
-      attributes: ["name", "cuisine_id", "rating", "location", "notes"],
+      attributes: ["name", "cuisine", "rating", "location", "notes"],
       include: [
         {
           model: Cuisine,
@@ -73,9 +73,7 @@ router.get("/:id", withAuth, async (req, res) => {
 router.get("/edit/:id", withAuth, async (req, res) => {
   const dbRestaurantData = await Restaurant.findOne({
     where: { id: req.params.id },
-    attributes: [
-      "name", "cuisine_id", "rating", "location", "notes", "user_id"
-    ],
+    attributes: ["name", "cuisine", "rating", "location", "notes", "user_id"],
     include: [
       {
         model: Cuisine,
@@ -110,52 +108,52 @@ router.get("/edit/:id", withAuth, async (req, res) => {
           restaurant.rating1 = true;
         } else {
           restaurant.rating1 = false;
-        };
+        }
 
         if (restaurant.rating === 2) {
           restaurant.rating2 = true;
         } else {
           restaurant.rating2 = false;
-        };
+        }
 
         if (restaurant.rating === 3) {
           restaurant.rating3 = true;
         } else {
           restaurant.rating3 = false;
-        };
+        }
 
         // add boolean values for displaying cuisine
-        if (restaurant.cuisine_id === 1) {
+        if (restaurant.cuisine === 1) {
           restaurant.cuisine1 = true;
         } else {
           restaurant.cuisine1 = false;
         }
 
-        if (restaurant.cuisine_id === 2) {
+        if (restaurant.cuisine === 2) {
           restaurant.cuisine2 = true;
         } else {
           restaurant.cuisine2 = false;
         }
 
-        if (restaurant.cuisine_id === 3) {
+        if (restaurant.cuisine === 3) {
           restaurant.cuisine3 = true;
         } else {
           restaurant.cuisine3 = false;
         }
 
-        if (restaurant.cuisine_id === 4) {
+        if (restaurant.cuisine === 4) {
           restaurant.cuisine4 = true;
         } else {
           restaurant.cuisine4 = false;
         }
 
-        if (restaurant.cuisine_id === 5) {
+        if (restaurant.cuisine === 5) {
           restaurant.cuisine5 = true;
         } else {
           restaurant.cuisine5 = false;
         }
 
-        if (restaurant.cuisine_id === 6) {
+        if (restaurant.cuisine === 6) {
           restaurant.cuisine6 = true;
         } else {
           restaurant.cuisine6 = false;
@@ -166,7 +164,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
       }
     })
     .then((restaurant) => {
-      res.render('edit-restaurant', { restaurant });
+      res.render("edit-restaurant", { restaurant });
     })
     .catch((err) => {
       console.log(err);
@@ -199,7 +197,7 @@ router.post("/", withAuth, async (req, res) => {
 
   Restaurant.create({
     name: req.body.name,
-    cuisine: req.body.cuisine_id,
+    cuisine: req.body.cuisine,
     location: req.body.location,
     rating: req.body.rating,
     notes: req.body.notes,
@@ -219,11 +217,11 @@ router.put("/:id", withAuth, (req, res) => {
   Restaurant.update(
     {
       name: req.body.name,
-      cuisine: req.body.cuisine_id,
+      cuisine: req.body.cuisine,
       location: req.body.location,
       rating: req.body.rating,
       notes: req.body.notes,
-      user_id: req.session.user_id
+      user_id: req.session.user_id,
     },
     {
       where: {
@@ -237,7 +235,7 @@ router.put("/:id", withAuth, (req, res) => {
         return;
       } else {
         console.log(dbRestaurantData);
-      };
+      }
     })
     .catch((err) => {
       console.log(err);
