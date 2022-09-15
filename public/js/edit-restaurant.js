@@ -24,13 +24,11 @@ async function editFormHandler(event) {
     },
   });
 
-  document.location.replace("/");
-
-  // if (response.ok) {
-  //   document.location.replace('/');
-  // } else {
-  //   alert(response.statusText);
-  // };
+  if (response.ok) {
+    document.location.replace('/');
+  } else {
+    alert(response.statusText);
+  };
 }
 
 document.querySelector("#edit-btn").addEventListener("submit", editFormHandler);

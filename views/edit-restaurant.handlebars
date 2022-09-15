@@ -16,10 +16,18 @@
         no more than one rating# value should be true
  --}}
 <div class="col s12 m4 l3 teal lighten-5">
-    <h3>More Options</h3>
-    <a class="sidebar-link" href="/">Discard Changes</a>
+    <h4>More Options</h4>
+    <p class="center-align">
+        <a class="btn waves-effect waves-light btn-small" href="/" name="discard">Discard Changes
+            <i class="material-icons right">cancel</i>
+        </a>
+    </p>
     {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
-    <button class="sidebar-btn" id="logout">Log Out</button>
+    <p class="center-align">
+        <button class="btn waves-effect waves-light btn-small" type="submit" name="action" id="logout">Log Out
+            <i class="material-icons right">exit_to_app</i>
+        </button>
+    </p>
 </div>
 <div class="col s12 m8 l9">
     <div class="main-form">
@@ -33,7 +41,7 @@
             </div>
             <div>
                 <label for="cuisine">Cuisine Type</label>
-                <select name="cuisine" id="cuisine">
+                <select name="cuisine" id="cuisine" style="display: inline-block;">
                     {{!-- if statements make dropdown default to current value --}}
                     <option value="2" {{#if cuisine2}}selected{{/if}}>American</option>
                     <option value="1" {{#if cuisine1}}selected{{/if}}>Asian</option>
@@ -49,7 +57,7 @@
             </div>
             <div>
                 <label for="cuisine">Rating</label>
-                <select name="cuisine" id="cuisine">
+                <select name="cuisine" id="cuisine" style="display: inline-block;">
                     {{!-- unless/if statements make dropdown default to current value --}}
                     <option value="0" {{#unless ratingCheck}}selected{{/unless}}>No Rating</option>
                     <option value="1" {{#if rating1}}selected{{/if}}>1 Star</option>

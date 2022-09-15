@@ -27,7 +27,7 @@ router.get("/:id", withAuth, async (req, res) => {
   try {
     const dbRestaurantData = await Restaurant.findOne({
       where: { id: req.params.id },
-      attributes: ["name", "cuisine", "rating", "location", "notes"],
+      attributes: ["id", "name", "cuisine", "rating", "location", "notes"],
       // include: [
       //   {
       //     model: Cuisine,
@@ -63,7 +63,19 @@ router.get("/:id", withAuth, async (req, res) => {
       restaurant.rating3 = false;
     }
 
-    // add code for selecting correct image
+    if (restaurant.cuisine === 1) {
+      restaurant.cuisine_name = 'Asian';
+    } else if (restaurant.cuisine === 2) {
+      restaurant.cuisine_name = 'American';
+    } else if (restaurant.cuisine === 3) {
+      restaurant.cuisine_name = 'Indian';
+    } else if (restaurant.cuisine === 4) {
+      restaurant.cuisine_name = 'Mexican';
+    } else if (restaurant.cuisine === 5) {
+      restaurant.cuisine_name = 'Italian';
+    } else {
+      restaurant.cuisine_name = 'Other';
+    };
 
     res.render("view-restaurant", {
       restaurant
