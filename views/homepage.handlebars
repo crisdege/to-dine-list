@@ -8,6 +8,7 @@
     .rating3 BOOLEAN
         only one rating# value should be true; if all false, ratingCheck should also be false
  --}}
+ 
 <div class= "col s12 m4 l3 teal lighten-5">
     {{#if loggedIn}}
     <p class="flow-text">Click on a restaurant to see its details and add/change its rating.</p>
@@ -88,12 +89,15 @@
         {{#each restaurants as |restaurant|}}
 
         <div class="row">
-            <div class="col s12 m7">
+            <div class="col s12 m6">
                 <div class="card">
-                <div class="card-image">
-                    <img src="/images/american_1.jpg">
-                    <span class="card-title" >{{restaurant.name}}</span>
-                </div>
+                        <div class="card-image">
+                           <img src="/images/asian_2.jpg" />;
+                            <span class="card-title" >{{restaurant.name}}</span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red" href="/edit"><i class="material-icons">add</i></a>
+                            
+                        </div>
+                    
                 <div class="card-content">
                     {{#if restaurant.ratingCheck}}
                         <p><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></p>
@@ -101,6 +105,7 @@
                         <p>I haven't rated this restaurant</p>
                     {{/if}}
                 </div>
+                
             </div>
             </div>
         </div>
@@ -137,6 +142,7 @@
 </div>
 {{#if loggedIn}}
 <script src="/js/logout.js"></script>
+<script src="/display-picture.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 {{!-- <script src="/js/load-images.js"></script> --}}
