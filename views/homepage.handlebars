@@ -80,7 +80,7 @@
     <div class="filter">
         {{!-- add filter code here --}}
     </div>
-    <div class="restaurant-list">
+    <div class="restaurant-list" id="restaurants-list">
         {{#each restaurants as |restaurant|}}
         <div class="restaurant-card">
         {{!-- will need to add CSS to make div.restaurant change on hover so it's clearly a link --}}
@@ -92,6 +92,9 @@
             {{else}}
             <p>I haven't rated this restaurant</p>
             {{/if}}
+            <button class="btn waves-effect waves-light" type="button" name="edit/{{restaurant.id}}">Edit This Restaurant
+                    <i class="material-icons right">send</i>
+            </button>
         </div>
         {{/each}}
     </div>
@@ -115,6 +118,7 @@
 <script src="/js/logout.js"></script>
 <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/load-edit-view.js"></script>
 {{!-- <script src="/js/update-user.js"></script> --}}
 {{!-- need to add script to edit restaurant when clicked --}}
 {{else}}

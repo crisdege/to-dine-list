@@ -26,9 +26,6 @@ router.get("/", async (req, res) => {
         // serialize restaurants list
         const restaurantData = dbRestaurantData.map(restaurant => restaurant.get({ plain: true }));
 
-        console.log('restaurantData')
-        console.log(restaurantData)
-
         if (restaurantData.length == 0) {
           // if the user has no restaurants, go to add restaurant page
           res.render("add-restaurant");

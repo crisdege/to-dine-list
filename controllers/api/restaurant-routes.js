@@ -76,7 +76,7 @@ router.get("/edit/:id", withAuth, async (req, res) => {
   const dbRestaurantData = await Restaurant.findOne({
     where: { id: req.params.id },
     attributes: [
-      "name", "cuisine_id", "rating", "location", "notes"
+      "name", "cuisine_id", "rating", "location", "notes", "user_id"
     ],
     include: [
       {
@@ -94,7 +94,8 @@ router.get("/edit/:id", withAuth, async (req, res) => {
         res.status(404).json({ message: "No restaurant found with this id" });
         return;
       } else {
-        let restaurant = dbRestaurantData;
+        // serialize data
+        let restaurant = dbRestaurantData.get({ plain: true });
 
         // add boolean values for displaying ratings
         restaurant.rating1 = false;
@@ -105,15 +106,25 @@ router.get("/edit/:id", withAuth, async (req, res) => {
           restaurant.ratingCheck = false;
         } else {
           restaurant.ratingCheck = true;
-
-          if (restaurant.rating === 1) {
-            restaurant.rating1 = true;
-          } else if (restaurant.rating === 2) {
-            restaurant.rating2 = true;
-          } else {
-            restaurant.rating3 = true;
-          }
         }
+
+        if (restaurant.rating === 1) {
+          restaurant.rating1 = true;
+        } else {
+          restaurant.rating1 = false;
+        };
+
+        if (restaurant.rating === 2) {
+          restaurant.rating2 = true;
+        } else {
+          restaurant.rating2 = false;
+        };
+
+        if (restaurant.rating === 3) {
+          restaurant.rating3 = true;
+        } else {
+          restaurant.rating3 = false;
+        };
 
         // add boolean values for displaying cuisine
         if (restaurant.cuisine_id === 1) {
@@ -152,11 +163,12 @@ router.get("/edit/:id", withAuth, async (req, res) => {
           restaurant.cuisine6 = false;
         }
 
-        res.render("edit-restaurant", {
-          restaurant,
-          loggedIn: req.session.loggedIn,
-        });
+        // pass on restaurant object
+        return restaurant;
       }
+    })
+    .then((restaurant) => {
+      res.render('edit-restaurant', { restaurant });
     })
     .catch((err) => {
       console.log(err);
@@ -194,6 +206,7 @@ router.put("/:id", withAuth, (req, res) => {
       location: req.body.location,
       rating: req.body.rating,
       notes: req.body.notes,
+      user_id: req.session.user_id
     },
     {
       where: {
@@ -205,8 +218,9 @@ router.put("/:id", withAuth, (req, res) => {
       if (!dbRestaurantData) {
         res.status(404).json({ message: "No restaurant found with this id" });
         return;
-      }
-      res.json(dbRestaurantData);
+      } else {
+        console.log(dbRestaurantData);
+      };
     })
     .catch((err) => {
       console.log(err);

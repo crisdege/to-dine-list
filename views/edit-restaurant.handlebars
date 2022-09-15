@@ -35,12 +35,12 @@
                 <label for="cuisine">Cuisine Type</label>
                 <select name="cuisine" id="cuisine">
                     {{!-- if statements make dropdown default to current value --}}
-                    <option value="2" {{#if cuisine2}}selected="selected"{{/if}}>American</option>
-                    <option value="1" {{#if cuisine1}}selected="selected"{{/if}}>Asian</option>
-                    <option value="3" {{#if cuisine3}}selected="selected"{{/if}}>Indian</option>
-                    <option value="5" {{#if cuisine5}}selected="selected"{{/if}}>Italian</option>
-                    <option value="4" {{#if cuisine4}}selected="selected"{{/if}}>Mexican</option>
-                    <option value="6" {{#if cuisine6}}selected="selected"{{/if}}>Other</option>
+                    <option value="2" {{#if cuisine2}}selected{{/if}}>American</option>
+                    <option value="1" {{#if cuisine1}}selected{{/if}}>Asian</option>
+                    <option value="3" {{#if cuisine3}}selected{{/if}}>Indian</option>
+                    <option value="5" {{#if cuisine5}}selected{{/if}}>Italian</option>
+                    <option value="4" {{#if cuisine4}}selected{{/if}}>Mexican</option>
+                    <option value="6" {{#if cuisine6}}selected{{/if}}>Other</option>
                 </select>
             </div>
             <div>
@@ -51,10 +51,10 @@
                 <label for="cuisine">Rating</label>
                 <select name="cuisine" id="cuisine">
                     {{!-- unless/if statements make dropdown default to current value --}}
-                    <option value="0" {{#unless ratingCheck}}selected="selected"{{/unless}}>No Rating</option>
-                    <option value="1" {{#if rating1}}selected="selected"{{/if}}>1 Star</option>
-                    <option value="2" {{#if rating2}}selected="selected"{{/if}}>2 Stars</option>
-                    <option value="3" {{#if rating3}}selected="selected"{{/if}}>3 Stars</option>
+                    <option value="0" {{#unless ratingCheck}}selected{{/unless}}>No Rating</option>
+                    <option value="1" {{#if rating1}}selected{{/if}}>1 Star</option>
+                    <option value="2" {{#if rating2}}selected{{/if}}>2 Stars</option>
+                    <option value="3" {{#if rating3}}selected{{/if}}>3 Stars</option>
                 </select>
             </div>
             <div>
@@ -62,7 +62,7 @@
                 <textarea id="notes">{{restaurant.notes}}</textarea>
             </div>
             <div>
-                <button type="submit" class="main-form-btn" id="edit-btn">Edit Restaurant</button>
+                <button type="submit" class="main-form-btn" id="edit-btn">Update Restaurant</button>
             </div>
         </form>
     </div>
