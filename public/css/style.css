@@ -1,0 +1,50 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+  }
+
+  main {
+    flex: 1 0 auto;
+  }
+
+  .sidebar-btn, .sidebar-link {
+    margin: 6px 0 6px 0;
+    padding: 2px 8px;
+    color: black;
+    background-color: lightgray;
+    border: 1px solid gray;
+    display: inline-block;
+  }
+
+  .sidebar-btn:hover, .sidebar-link:hover {
+    background-color: yellow;
+    border: 1px solid goldenrod;
+  }
+
+  header {
+    margin-top: 0 !important;
+  }
+
+  footer {
+    text-align: center;
+    margin: 0 !important;
+    margin-top: auto !important;
+  }
+
+  footer p {
+    color: white;
+  }
+
+  .card-title {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+  }
+
+  .card-title a {
+    color: white;
+  }
+
+  .card-title a:hover {
+    color: #d4e157;
+  }

@@ -1,0 +1,151 @@
+{{!-- expects each restaurant object to have the following keys:
+    .name STRING
+    .imgName STRING (filename for image, based on cuisine type)
+
+    .ratingCheck BOOLEAN (false if not yet rated)
+    .rating1 BOOLEAN
+    .rating2 BOOLEAN
+    .rating3 BOOLEAN
+        only one rating# value should be true; if all false, ratingCheck should also be false
+ --}}
+ 
+<div class= "col s12 m4 l2 teal lighten-5">
+    {{#if loggedIn}}
+    <p>Click on a restaurant to see its details and add/change its rating.</p>
+    <h4 class="center-align">More Options</h4>
+    
+    <p class="center-align">
+        <a class="btn waves-effect waves-light btn-small" href="/add" name="add-a-restaurant">Add Restaurant
+            <i class="material-icons right">add</i>
+        </a>
+    </p>
+    {{!-- <a class="col s12" href="/add">Add A Restaurant</a> --}}
+    {{!-- <button class="sidebar-btn" id="update-user">Change My Password</button> --}}
+    <p class="center-align">
+        <button class="btn waves-effect waves-light btn-small" type="submit" name="action" id="logout">Log Out
+            <i class="material-icons right">exit_to_app</i>
+        </button>
+    </p>
+    {{!-- <button class="sidebar-btn" id="logout">Log Out</button> --}}
+    {{else}}
+    {{!-- <div > --}}
+        <form class="col s12" id="signup-form">
+            <h4>Sign Up</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="username-signup">Username:</label>
+                    <input type="text" id="username-signup" class="validate" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="password">Password</label>
+                    <input id="password-signup" type="password" class="validate">
+                </div>
+            </div>
+            <div>
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="signup-btn">Sign Up
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+       
+        <form class="col s12" id="signin-form">
+            <h4>Log In</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="username-signin">Username:</label>
+                    <input type="text" id="username-signin" class="validate" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <label for="password">Password</label>
+                    <input id="password-signin" type="password" class="validate">
+                </div>
+            </div>
+            <div>
+                <button class="btn waves-effect waves-light" type="submit" name="action" id="signin-btn">Log In
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+        </form>
+    {{!-- </div> --}}
+    {{/if}}
+</div>
+<div class="col s12 m8 l10">
+    {{#if loggedIn}}
+    <div>
+        <h2>
+            My To-Dine List
+        </h2>
+    </div>
+    <div class="filter">
+        {{!-- add filter code here --}}
+    </div>
+    <div class="row">
+        <div class="restaurant-list" id="restaurants-list">
+        {{#each restaurants as |restaurant|}}
+            <div class="col s12 m6 l5">
+                <div class="card">
+                    <div class="card-image">
+                           <img src="/images/asian_2.jpg" alt="plate of sushi" />
+                            <span class="card-title" ><a href="/api/restaurants/{{restaurant.id}}"><b>{{restaurant.name}}</b></a></span>
+                            <a class="btn-floating halfway-fab waves-effect waves-light red" href="/api/restaurants/edit/{{restaurant.id}}"><i class="material-icons">create</i></a>
+                    </div>
+                </div>
+                <div class="card-content" style="padding-left: 10px; padding: right: 10px;">
+                    {{#if restaurant.ratingCheck}}
+                        <span style="font-size: 25px"><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></span>
+                    {{else}}
+                        <span style="font-size: 25px">No Rating</span>
+                    {{/if}}
+                    {{!-- <button class="btn waves-effect waves-light" type="button" name="/edit/{{restaurant.id}}">Edit This Restaurant
+                    <i class="material-icons right">send</i> --}}
+                    {{!-- </button> --}}
+                </div>
+            </div>
+        {{/each}}
+        </div>
+        
+
+        {{!-- <div class="restaurant-card"> --}}
+        {{!-- will need to add CSS to make div.restaurant change on hover so it's clearly a link --}}
+            {{!-- <h3>{{restaurant.name}}</h3> --}}
+            {{!-- <img src="/images/{{restaurant.cuisine.cuisine_image}}" class="restaurant-card-img" alt=""> --}}
+            {{!-- if statement checks which rating text to display --}}
+            {{!-- {{#if restaurant.ratingCheck}} --}}
+            {{!-- <p><ion-icon name="{{restaurant.rating1}}"></ion-icon> <ion-icon name="{{restaurant.rating2}}"></ion-icon> <ion-icon name="{{restaurant.rating3}}"></ion-icon></p> --}}
+            {{!-- {{else}} --}}
+            {{!-- <p>I haven't rated this restaurant</p> --}}
+            {{!-- {{/if}} --}}
+        {{!-- </div> --}}
+    </div>
+    {{else}}
+    <div class="col s12 m8 l9">
+
+    <p class="flow-text">What was the name of that restaurant your friend has been telling you to try? And did
+        you try the new sushi place a couple weeks ago or the one across town?</p>
+
+    <p class="flow-text">You’ve got enough on your plate already. Let us keep track of your restaurant list so
+        you can just worry about what you’re going to order.</p>
+
+    <p class="flow-text">Make a To-Dine List and filter it by cuisine when you need help deciding where to go.
+        Once you’ve visited a restaurant, give it a rating so you know to go back.</p>
+
+    <p class="red-text flow-text">Create an account or log in to get started.</p>
+    </div>
+    {{/if}}
+</div>
+{{#if loggedIn}}
+<script src="/js/logout.js"></script>
+<script src="/display-picture.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<script src="/js/load-edit-view.js"></script>
+{{!-- <script src="/js/load-images.js"></script> --}}
+{{!-- <script src="/js/update-user.js"></script> --}}
+{{!-- need to add script to edit restaurant when clicked --}}
+{{else}}
+<script src="/js/login.js"></script>
+{{/if}}
